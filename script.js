@@ -1,9 +1,6 @@
 'use strict';
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
-
+// Bank APP
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -61,11 +58,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-
-
-
-
-
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -83,18 +75,12 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-
-
-
 // Balance
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
 calcDisplayBalance(account1.movements);
-
-
-
 
 // Total Deposit
 const calcDisplaySummary = function(movements) {
@@ -103,18 +89,12 @@ const calcDisplaySummary = function(movements) {
 }
 calcDisplaySummary(account1.movements);
 
-
-
-
 // Total Withdrawal
 const calcDisplayWithdrawal = function(movements) {
 const outcomes = movements.filter(mov => mov < -0).reduce((acc,mov) => acc + mov);
 labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 }
 calcDisplayWithdrawal(account1.movements);
-
-
-
 
 // Interest
 const calcDisplayInterest = function(movements) {
@@ -127,14 +107,6 @@ const interest = movements
 labelSumInterest.textContent = `${interest}€`;
 }
 calcDisplayInterest(account1.movements);
-
-
-
-
-
-
-
-
 
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
