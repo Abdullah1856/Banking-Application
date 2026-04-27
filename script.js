@@ -1,5 +1,7 @@
 'use strict';
 
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
 // BANKIST APP
 
 // Data
@@ -116,10 +118,20 @@ calcDisplayWithdrawal(account1.movements);
 
 // Interest
 const calcDisplayInterest = function(movements) {
-const interest = movements.filter(mov => mov > 0).map(deposit => (deposit * 1.2) / 100).reduce((acc,int) => acc + int, 0);
+const interest = movements
+.filter(mov => mov > 0)
+.map(deposit => (deposit * 1.2) / 100)
+.filter(deposit => deposit >= 1)
+.reduce((acc,int) => acc + int, 0);
+
 labelSumInterest.textContent = `${interest}€`;
 }
 calcDisplayInterest(account1.movements);
+
+
+
+
+
 
 
 
@@ -147,5 +159,3 @@ console.log(deposits);
 
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
-
-
