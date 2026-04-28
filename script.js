@@ -83,18 +83,18 @@ const calcDisplayBalance = function (movements) {
 
 
 // Total Deposit
-const calcDisplaySummary = function(movements) {
-  const incomes = movements.filter(mov => mov > 0).reduce((acc,mov) => acc + mov);
+const calcDisplaySummary = function(acc) {
+  const incomes = acc.movements.filter(mov => mov > 0).reduce((acc,mov) => acc + mov);
   labelSumIn.textContent = `${incomes}€`;
 
 // Total Withdrawal
-const out = movements.filter(mov => mov < -0).reduce((acc,mov) => acc + mov);
+const out = acc.movements.filter(mov => mov < -0).reduce((acc,mov) => acc + mov);
 labelSumOut.textContent = `${Math.abs(out)}€`;
 
 // Interest
-const interest = movements
+const interest = acc.movements
 .filter(mov => mov > 0)
-.map(deposit => (deposit * 1.2) / 100)
+.map(deposit => (deposit * acc.interestRate) / 100)
 .filter(deposit => deposit >= 1)
 .reduce((acc,int) => acc + int, 0);
 
@@ -146,6 +146,6 @@ displayMovements(currentAccount.movements);
 calcDisplayBalance(currentAccount.movements);
 
 // Display Summery
-calcDisplaySummary(currentAccount.movements);
+calcDisplaySummary(currentAccount);
 }
 });
