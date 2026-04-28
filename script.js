@@ -1,6 +1,6 @@
 'use strict';
-
 // Bank APP
+
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -73,9 +73,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
-
-
 
 
 // Balance
@@ -83,33 +80,18 @@ const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
-
-
 
 
 // Total Deposit
 const calcDisplaySummary = function(movements) {
   const incomes = movements.filter(mov => mov > 0).reduce((acc,mov) => acc + mov);
   labelSumIn.textContent = `${incomes}€`;
-}
-calcDisplaySummary(account1.movements);
-
-
-
 
 // Total Withdrawal
-const calcDisplayWithdrawal = function(movements) {
-const outcomes = movements.filter(mov => mov < -0).reduce((acc,mov) => acc + mov);
-labelSumOut.textContent = `${Math.abs(outcomes)}€`;
-}
-calcDisplayWithdrawal(account1.movements);
-
-
-
+const out = movements.filter(mov => mov < -0).reduce((acc,mov) => acc + mov);
+labelSumOut.textContent = `${Math.abs(out)}€`;
 
 // Interest
-const calcDisplayInterest = function(movements) {
 const interest = movements
 .filter(mov => mov > 0)
 .map(deposit => (deposit * 1.2) / 100)
@@ -120,10 +102,7 @@ labelSumInterest.textContent = `${interest}€`;
 }
 
 
-
-
-calcDisplayInterest(account1.movements);
-
+// Get First Alphabet of User Name
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -133,24 +112,10 @@ const createUserNames = function (accs) {
       .join('');
   });
 };
-
 createUserNames(accounts);
-console.log(accounts);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-const deposits = movements.filter(function (mov, i, arr) {
-  return mov > 0;
-});
-console.log(movements);
-console.log(deposits);
-
-const withdrawals = movements.filter(mov => mov < 0);
-console.log(withdrawals);
 
 let currentAccount;
-
-
 
 
 // Login
@@ -166,5 +131,21 @@ if(currentAccount?.pin === Number(inputLoginPin.value)) {
 //  Display Welcome Message 
 labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(' ')[0]}`;
 containerApp.style.opacity = '100';
+
+
+// Clear Input fields
+inputLoginUsername.value = '';
+inputLoginPin.value = '';
+inputLoginPin.blur();
+
+
+// Display Movements
+displayMovements(currentAccount.movements);
+
+// Display Balance
+calcDisplayBalance(currentAccount.movements);
+
+// Display Summery
+calcDisplaySummary(currentAccount.movements);
 }
 });
