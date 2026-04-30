@@ -149,3 +149,14 @@ calcDisplayBalance(currentAccount.movements);
 calcDisplaySummary(currentAccount);
 }
 });
+
+btnTransfer.addEventListener('click', function(e) {
+e.preventDefault();
+console.log('The Btn is clicked');
+
+const account = Number(inputTransferAmount.value);
+const reciverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+
+console.log(account, reciverAcc);
+
+})
