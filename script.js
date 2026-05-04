@@ -135,7 +135,7 @@ btnLogin.addEventListener('click', function(e) {
 e.preventDefault();
 
 currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
-console.log(currentAccount);
+// console.log(currentAccount);
 
 if(currentAccount?.pin === Number(inputLoginPin.value)) {
 
@@ -174,3 +174,13 @@ if(amount > 0 &&
   updateUI(currentAccount);
 }
 });
+
+
+// Account-Close
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+  console.log('Close Clicked');
+
+})
+
+console.log(currentAccount);
