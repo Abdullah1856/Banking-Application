@@ -34,7 +34,7 @@ const accounts = [account1, account2, account3, account4];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
-const labelDate = document.querySelector('.date');
+const labelDate = document.querySelector('.date');    
 const labelBalance = document.querySelector('.balance__value');
 const labelSumIn = document.querySelector('.summary__value--in');
 const labelSumOut = document.querySelector('.summary__value--out');
@@ -179,8 +179,10 @@ if(amount > 0 &&
 // Account-Close
 btnClose.addEventListener('click', function(e) {
   e.preventDefault();
-  console.log('Close Clicked');
-
-})
+  console.log('Clicked');
+  if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
+  console.log('Name Matched');
+  }
+});
 
 console.log(currentAccount);
