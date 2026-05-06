@@ -179,10 +179,22 @@ if(amount > 0 &&
 // Account-Close
 btnClose.addEventListener('click', function(e) {
   e.preventDefault();
-  console.log('Clicked');
+  
   if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
   console.log('Name Matched');
+  } 
+  {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+    console.log(index);
+    
+    // Delete Account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
   }
+
+    inputCloseUsername.value = inputClosePin.value = '';  
 });
 
 console.log(currentAccount);
