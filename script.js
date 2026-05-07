@@ -175,15 +175,28 @@ if(amount > 0 &&
 }
 });
 
+// Loan
+btnLoan.addEventListener('click', function(e) {
+e.preventDefault();
+const amount = Number(inputLoanAmount.value); 
+if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+  
+  // add movement
+  currentAccount.movements.push(amount);
+
+  // Update UI
+  updateUI(currentAccount);
+
+}
+
+  inputLoanAmount.value = '';
+});
 
 // Account-Close
 btnClose.addEventListener('click', function(e) {
   e.preventDefault();
   
   if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
-  console.log('Name Matched');
-  } 
-  {
     const index = accounts.findIndex(acc => acc.username === currentAccount.username);
     console.log(index);
     
