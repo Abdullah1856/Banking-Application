@@ -10,8 +10,8 @@ const account1 = {
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  owner: 'Jessica Davis',  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+
   interestRate: 1.5,
   pin: 2222,
 };
@@ -58,10 +58,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -210,4 +212,10 @@ btnClose.addEventListener('click', function(e) {
     inputCloseUsername.value = inputClosePin.value = '';  
 });
 
-console.log(currentAccount);
+// Sorting
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
