@@ -5,7 +5,7 @@ Please check it out: https://abdullah1856.github.io/Banking-Application/
 You can transfer funds from one account to another and view the transferred amounts and many more things. Here are the login credentials for you:
 
 **Account 1:**
-Name: jd
+Name: js,
 pin: 1111
 
 **Account 2:**
