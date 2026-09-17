@@ -142,7 +142,11 @@ currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
 if(currentAccount?.pin === Number(inputLoginPin.value)) {
 
 //  Display Welcome Message 
-labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(' ')[0]}`;
+// labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(' ')[0]}`;
+// containerApp.style.opacity = '100';
+
+// Display Welcome Message
+labelWelcome.textContent = `Welcome Back ${currentAccount.owner}`;
 containerApp.style.opacity = '100';
 
 
